@@ -22,4 +22,9 @@ public class ProductForm {
      */
     public String productImage;
 
+    /**
+     * Código da categoria do produto
+     */
+    public int category;
+
 }

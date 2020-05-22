@@ -1,6 +1,7 @@
 package com.diego.ecommerce.services.implementation;
 
 import com.diego.ecommerce.data.entities.Product;
+import com.diego.ecommerce.data.entities.enums.CategoryType;
 import com.diego.ecommerce.data.forms.ProductForm;
 import com.diego.ecommerce.exception.HttpException;
 import com.diego.ecommerce.repositories.IProductRepository;
@@ -85,6 +86,7 @@ public class ProductServiceImpl implements IProductService {
         product.description = form.description;
         product.productImage = form.productImage;
         product.price = form.price;
+        product.categoryType = CategoryType.valueOf(form.category);
 
         return product;
     }
@@ -94,6 +96,7 @@ public class ProductServiceImpl implements IProductService {
         oldObj.description = newObj.description;
         oldObj.productImage = newObj.productImage;
         oldObj.price = newObj.price;
+        oldObj.categoryType = newObj.categoryType;
         return oldObj;
     }
 }

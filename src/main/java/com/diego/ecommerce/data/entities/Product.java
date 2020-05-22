@@ -1,7 +1,7 @@
 package com.diego.ecommerce.data.entities;
 
+import com.diego.ecommerce.data.entities.enums.CategoryType;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -28,6 +28,9 @@ public class Product {
     public String productImage;
 
     @Getter @Setter
+    public CategoryType categoryType;
+
+    @Getter @Setter
     public Boolean isTopSelling;
 
     @Getter @Setter
@@ -38,10 +41,11 @@ public class Product {
         this.isTopSelling = false;
     }
 
-    public Product(String name, String description, Double price, String productImage){
+    public Product(String name, String description, Double price, String productImage, CategoryType categoryType){
         this.name = name;
         this.description = description;
         this.price = price;
         this.productImage = productImage;
+        this.categoryType = categoryType
     }
 }

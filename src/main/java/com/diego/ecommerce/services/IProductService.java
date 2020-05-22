@@ -2,6 +2,7 @@ package com.diego.ecommerce.services;
 
 
 import com.diego.ecommerce.data.entities.Product;
+import com.diego.ecommerce.data.forms.ProductForm;
 
 import java.util.List;
 
@@ -11,7 +12,10 @@ public interface IProductService {
 
     Product findById(Long id);
 
-    Product registerProduct(Long id);
+    Product registerProduct(ProductForm form);
 
-    Product updateProduct(Long id);
+    Product updateProduct(ProductForm form, Long id);
+
+    void deleteProduct(Long id);
+
 }

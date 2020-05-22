@@ -8,7 +8,6 @@ import javax.persistence.*;
 
 @Entity
 @Table
-@NoArgsConstructor
 public class Product {
 
     @Id
@@ -34,12 +33,15 @@ public class Product {
     @Getter @Setter
     public Boolean isTopDeal;
 
+    public Product(){
+        this.isTopDeal = false;
+        this.isTopSelling = false;
+    }
+
     public Product(String name, String description, Double price, String productImage){
         this.name = name;
         this.description = description;
         this.price = price;
         this.productImage = productImage;
-        this.isTopDeal = false;
-        this.isTopSelling = false;
     }
 }

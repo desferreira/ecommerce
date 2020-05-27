@@ -46,6 +46,6 @@ public class Product {
         this.description = description;
         this.price = price;
         this.productImage = productImage;
-        this.categoryType = categoryType
+        this.categoryType = categoryType;
     }
 }

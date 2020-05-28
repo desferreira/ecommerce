@@ -1,7 +1,6 @@
 package com.diego.ecommerce.data.entities;
 
 import com.diego.ecommerce.data.entities.enums.PaymentStatus;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

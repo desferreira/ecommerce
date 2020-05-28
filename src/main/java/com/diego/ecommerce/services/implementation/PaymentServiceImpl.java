@@ -1,14 +1,18 @@
 package com.diego.ecommerce.services.implementation;
 
+import com.diego.ecommerce.data.entities.Client;
 import com.diego.ecommerce.data.entities.Payment;
+import com.diego.ecommerce.data.entities.enums.PaymentStatus;
 import com.diego.ecommerce.data.forms.PaymentForm;
 import com.diego.ecommerce.exception.HttpException;
+import com.diego.ecommerce.repositories.IClientRepository;
 import com.diego.ecommerce.repositories.IPaymentRepository;
 import com.diego.ecommerce.services.IPaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,6 +24,9 @@ public class PaymentServiceImpl implements IPaymentService {
 
     @Autowired
     private IPaymentRepository repository;
+
+    @Autowired
+    private IClientRepository clientRepository;
 
     @Override
     public Payment findById(Long id) {
@@ -48,6 +55,22 @@ public class PaymentServiceImpl implements IPaymentService {
     }
 
     private Payment createPaymentFromForm(PaymentForm form) {
-        return new Payment();
+        Payment payment = new Payment();
+
+        payment.cardNumber = form.cardNUmber;
+        payment.moment = Instant.now();
+        payment.paymentStatus = PaymentStatus.PROCESSING;
+        payment.paymentValue = form.paymentValue;
+
+        Optional<Client> optionalClient = this.clientRepository.findById(form.clientId);
+
+        if (optionalClient.isEmpty()){
+            throw new HttpException(String.format("Client with id [%d] is not found", form.clientId),
+                    HttpStatus.NOT_FOUND, "Not found");
+        }
+
+        payment.client = optionalClient.get();
+
+        return payment;
     }
 }

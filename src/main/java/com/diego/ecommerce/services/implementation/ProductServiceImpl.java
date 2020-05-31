@@ -87,6 +87,7 @@ public class ProductServiceImpl implements IProductService {
         product.productImage = form.productImage;
         product.price = form.price;
         product.categoryType = CategoryType.valueOf(form.category);
+        product.productQuantity = form.quantity;
 
         return product;
     }
@@ -97,6 +98,7 @@ public class ProductServiceImpl implements IProductService {
         oldObj.productImage = newObj.productImage;
         oldObj.price = newObj.price;
         oldObj.categoryType = newObj.categoryType;
+        oldObj.productQuantity = newObj.productQuantity;
         return oldObj;
     }
 }

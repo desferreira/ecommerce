@@ -14,14 +14,14 @@ import javax.persistence.Id;
 public class Client {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
-    private Long id;
+    public Long id;
 
     @Getter @Setter
-    private String name;
+    public String name;
 
     @Getter @Setter
-    private String CPF;
+    public String CPF;
 
 }

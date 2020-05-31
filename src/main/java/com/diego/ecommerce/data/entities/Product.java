@@ -11,7 +11,7 @@ import javax.persistence.*;
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
     public Long id;
 
@@ -31,6 +31,9 @@ public class Product {
     public CategoryType categoryType;
 
     @Getter @Setter
+    public Integer productQuantity;
+
+    @Getter @Setter
     public Boolean isTopSelling;
 
     @Getter @Setter
@@ -39,6 +42,7 @@ public class Product {
     public Product(){
         this.isTopDeal = false;
         this.isTopSelling = false;
+        this.productQuantity = 0;
     }
 
     public Product(String name, String description, Double price, String productImage, CategoryType categoryType){

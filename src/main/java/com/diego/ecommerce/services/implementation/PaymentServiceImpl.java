@@ -3,6 +3,7 @@ package com.diego.ecommerce.services.implementation;
 import com.diego.ecommerce.data.entities.Client;
 import com.diego.ecommerce.data.entities.Payment;
 import com.diego.ecommerce.data.entities.enums.PaymentStatus;
+import com.diego.ecommerce.data.entities.enums.PaymentType;
 import com.diego.ecommerce.data.forms.PaymentForm;
 import com.diego.ecommerce.exception.HttpException;
 import com.diego.ecommerce.repositories.IClientRepository;
@@ -47,7 +48,7 @@ public class PaymentServiceImpl implements IPaymentService {
     public Payment registerPayment(PaymentForm form) {
         Payment payment = this.createPaymentFromForm(form);
 
-        logger.log(Level.INFO, String.format("Saving the payment with value [%d]", payment.paymentValue));
+        logger.log(Level.INFO, String.format("Saving the payment with value [%f]", payment.paymentValue));
 
         this.repository.save(payment);
 
@@ -57,16 +58,16 @@ public class PaymentServiceImpl implements IPaymentService {
     private Payment createPaymentFromForm(PaymentForm form) {
         Payment payment = new Payment();
 
-        payment.cardNumber = form.cardNUmber;
+        payment.cardNumber = form.cardNumber;
         payment.moment = Instant.now();
         payment.paymentStatus = PaymentStatus.PROCESSING;
         payment.paymentValue = form.paymentValue;
+        payment.type = PaymentType.valueOf(form.paymentType);
 
-        Optional<Client> optionalClient = this.clientRepository.findById(form.clientId);
+        Optional<Client> optionalClient = this.clientRepository.findById(1L);
 
         if (optionalClient.isEmpty()){
-            throw new HttpException(String.format("Client with id [%d] is not found", form.clientId),
-                    HttpStatus.NOT_FOUND, "Not found");
+            throw new RuntimeException("erro");
         }
 
         payment.client = optionalClient.get();

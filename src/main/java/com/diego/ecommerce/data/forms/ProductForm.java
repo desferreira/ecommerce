@@ -27,4 +27,9 @@ public class ProductForm {
      */
     public int category;
 
+    /**
+     * Quantidade do produto em estoque
+     */
+    public int quantity;
+
 }

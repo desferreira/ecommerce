@@ -6,7 +6,7 @@ public class PaymentForm {
     /**
      * Cartão responsável pelo pagamento
      */
-    public String cardNUmber;
+    public String cardNumber;
 
     /**
      * Valor do pagamento
@@ -22,5 +22,10 @@ public class PaymentForm {
      * Id da ordem de compra
      */
     public Long orderId;
+
+    /**
+     * Tipo de pagamento
+     */
+    public int paymentType;
 
 }

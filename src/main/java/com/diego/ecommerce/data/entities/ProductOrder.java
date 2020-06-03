@@ -28,6 +28,9 @@ public class ProductOrder {
     @Getter @Setter
     public ProductOrderStatus status;
 
+    @OneToOne
+    public Client client;
+
     public ProductOrder(){
         this.creationTime = Instant.now();
         this.status = ProductOrderStatus.PENDING;

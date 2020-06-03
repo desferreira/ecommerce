@@ -54,7 +54,6 @@ public class ProductOrderServiceImpl implements IProductOrderService {
         }
 
         ProductOrder productOrder = new ProductOrder();
-        logger.info(form.paymentForm.clientId.toString());
         Payment payment = this.paymentService.registerPayment(form.paymentForm);
 
         productOrder.productList = this.createProductList(form.products);
@@ -66,6 +65,14 @@ public class ProductOrderServiceImpl implements IProductOrderService {
     }
 
     @Override
+    public List<ProductOrder> findByClient(Long id) {
+        logger.log(Level.INFO, String.format("Searching for orders from client [%d]", id));
+        List<ProductOrder> orders = this.repository.findByClient_Id(id);
+
+        return orders;
+    }
+
+    @Override
     public void cancelOrder(Long id) {
         ProductOrder productOrder = this.repository.getOne(id);
 
@@ -73,6 +80,8 @@ public class ProductOrderServiceImpl implements IProductOrderService {
 
         this.repository.save(productOrder);
     }
+
+
 
     private List<Product> createProductList(List<Long> productId){
         List<Product> productList = new ArrayList<>();

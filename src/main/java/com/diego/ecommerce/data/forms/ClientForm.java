@@ -4,5 +4,5 @@ public class ClientForm {
 
     public String name;
 
-    public String CPF;
+    public String cpf;
 }

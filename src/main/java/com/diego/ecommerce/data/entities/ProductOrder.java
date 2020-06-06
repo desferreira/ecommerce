@@ -16,18 +16,33 @@ public class ProductOrder {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
 
+    /**
+     * Instante de criação da ordem
+     */
     @Getter @Setter
     public Instant creationTime;
 
+    /**
+     * Pagamento associado à ordem
+     */
     @OneToOne
     public Payment payment;
 
+    /**
+     * Lista de produtos da ormde
+     */
     @OneToMany
     public List<Product> productList;
 
+    /**
+     * Status da ordem
+     */
     @Getter @Setter
     public ProductOrderStatus status;
 
+    /**
+     * Cliente resposável pela ordem
+     */
     @OneToOne
     public Client client;
 

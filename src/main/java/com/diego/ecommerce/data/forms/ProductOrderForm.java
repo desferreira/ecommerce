@@ -11,6 +11,9 @@ public class ProductOrderForm {
      */
     public List<Long> products;
 
+    /**
+     * Fórmulario com dados de pagamento
+     */
     public PaymentForm paymentForm;
 
 }

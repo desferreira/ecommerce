@@ -5,10 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Client {
@@ -18,13 +15,29 @@ public class Client {
     @Getter
     public Long id;
 
+    /**
+     * Nome do cliente
+     */
     @Getter @Setter
     public String name;
 
+    /**
+     * CPF do cliente
+     */
     @Getter @Setter
     public String cpf;
 
+    /**
+     * Status do cliente
+     */
+    @Getter @Setter
     public ClientStatus status;
+
+    /**
+     * Dados de endereço do cliente
+     */
+    @OneToOne
+    public Addres addres;
 
     public Client(){
         this.status = ClientStatus.ACTIVE;

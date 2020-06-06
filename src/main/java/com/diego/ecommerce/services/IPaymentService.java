@@ -7,8 +7,18 @@ import org.springframework.stereotype.Service;
 @Service
 public interface IPaymentService {
 
+    /**
+     * Método responsável por bucar um pagamento a partir do ID
+     * @param id Id do pagamento
+     * @return
+     */
     Payment findById(Long id);
 
+    /**
+     * Método responsável por criar um pagamento a partir de um formulário
+     * @param form Formulário com dados de pagamento
+     * @return
+     */
     Payment registerPayment(PaymentForm form);
 
 }

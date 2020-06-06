@@ -15,27 +15,51 @@ public class Product {
     @Getter
     public Long id;
 
+    /**
+     * Nome do produto
+     */
     @Getter @Setter
     public String name;
 
+    /**
+     * Descrição do produto
+     */
     @Getter @Setter
     public String description;
 
+    /**
+     * Preço do produto
+     */
     @Getter @Setter
     public Double price;
 
+    /**
+     * URL da imagem do produto
+     */
     @Getter @Setter
     public String productImage;
 
+    /**
+     * Categoria do produto
+     */
     @Getter @Setter
     public CategoryType categoryType;
 
+    /**
+     * Quantidade do produto em estoque
+     */
     @Getter @Setter
     public Integer productQuantity;
 
+    /**
+     * Flag indicativa se o produto é um dos mais vendidos
+     */
     @Getter @Setter
     public Boolean isTopSelling;
 
+    /**
+     * Flag indicativa se o produto está em promoção
+     */
     @Getter @Setter
     public Boolean isTopDeal;
 

@@ -1,9 +1,12 @@
 package com.diego.ecommerce.services.implementation;
 
+import com.diego.ecommerce.data.entities.Addres;
 import com.diego.ecommerce.data.entities.Client;
 import com.diego.ecommerce.data.entities.enums.ClientStatus;
+import com.diego.ecommerce.data.forms.AddresForm;
 import com.diego.ecommerce.data.forms.ClientForm;
 import com.diego.ecommerce.exception.HttpException;
+import com.diego.ecommerce.repositories.IAddresRepository;
 import com.diego.ecommerce.repositories.IClientRepository;
 import com.diego.ecommerce.services.IClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +25,9 @@ public class ClientServiceImpl implements IClientService {
 
     @Autowired
     private IClientRepository repository;
+
+    @Autowired
+    private IAddresRepository addresRepository;
 
     @Override
     public List<Client> findAll() {
@@ -59,8 +65,24 @@ public class ClientServiceImpl implements IClientService {
 
     private Client registerClientFromForm(ClientForm form){
         Client client = new Client();
-        client.CPF = form.CPF;
+        client.cpf = form.cpf;
         client.name = form.name;
+        client.addres = this.registerAddres(form.addresForm);
         return client;
     }
+
+    private Addres registerAddres(AddresForm form){
+        Addres addres = new Addres();
+
+        addres.setStreet(form.street);
+        addres.setComplement(form.complement);
+        addres.setNumber(form.number);
+        addres.setState(form.state);
+        addres.setCity(form.city);
+
+        this.addresRepository.save(addres);
+
+        return addres;
+    }
+
 }

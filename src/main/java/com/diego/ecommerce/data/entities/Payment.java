@@ -17,21 +17,39 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
 
+    /**
+     * Momento de crianção do pagamento
+     */
     @Getter @Setter
     public Instant moment;
 
+    /**
+     * Status do pagamento
+     */
     @Getter @Setter
     public PaymentStatus paymentStatus;
 
+    /**
+     * Número do cartão do pagamento
+     */
     @Getter @Setter
     public String cardNumber;
 
+    /**
+     * Valor do pagamento
+     */
     @Getter @Setter
     public Double paymentValue;
 
+    /**
+     * Cliente associado ao pagamento
+     */
     @OneToOne
     public Client client;
 
+    /**
+     * Tipo do pagamento
+     */
     @Getter @Setter
     public PaymentType type;
 
